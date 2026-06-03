@@ -145,20 +145,22 @@ export default function Hero() {
             {carouselData.map((item, index) => {
               const style = getCardStyle(index);
               return (
-                <motion.div
+                <div
                   key={item.id}
-                  className="absolute left-1/2 top-1/2 w-[280px] sm:w-[320px] md:w-[360px]"
-                  animate={{
-                    x: style.x - 160,
-                    y: '-50%',
-                    rotateY: style.rotateY,
-                    scale: style.scale,
-                    opacity: style.opacity,
-                    zIndex: style.zIndex,
-                  }}
-                  transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-                  style={{ transformStyle: 'preserve-3d', transformOrigin: 'center center' }}
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  style={{ zIndex: style.zIndex, transformStyle: 'preserve-3d' }}
                 >
+                  <motion.div
+                    className="w-[280px] sm:w-[320px] md:w-[360px]"
+                    animate={{
+                      x: style.x,
+                      rotateY: style.rotateY,
+                      scale: style.scale,
+                      opacity: style.opacity,
+                    }}
+                    transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ transformStyle: 'preserve-3d', transformOrigin: 'center center' }}
+                  >
                   <div
                     className="glass-card p-5 sm:p-6 cursor-pointer h-[360px] sm:h-[400px] md:h-[440px] flex flex-col"
                     onClick={scrollToProjects}
@@ -192,6 +194,7 @@ export default function Hero() {
                     </button>
                   </div>
                 </motion.div>
+                </div>
               );
             })}
           </AnimatePresence>
